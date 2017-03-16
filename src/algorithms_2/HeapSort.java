@@ -29,17 +29,16 @@ public class HeapSort {
         int r = 2 * i + 2;
 
         // check left child compare it to array(i)
-        int greater_index;
+        int greater_index = i;
         if (l <= A.length-1 && A[l] > A[i]) {
             greater_index = l;
-        } else {
-            greater_index = i;
         }
 
         // check right child, compare it to either left child and array(i)
         if (r <= A.length-1 && A[r] > greater_index) {
             greater_index = r;
         }
+        
 
         
         // exchange subtree's root if necessary
@@ -106,17 +105,20 @@ public class HeapSort {
         build_heap(A);
         ArrayList alist = toArrayList(A);
          
-        for(int i = A.length; i>=0; i--){
+        for(int i = A.length; i>0; i--){
         int old_root = (int) alist.get(0);
-        alist.add(i,old_root);
+        int temp = old_root;
+        alist.set(0,alist.get(i-1));
+        alist.set(i-1, temp);
                 
-        if( i < A.length-2 &&(int) alist.get(1)< (int) alist.get(2)){
-            //exchange
-             int old_left = (int) alist.get(1);
-             alist.set(1, (int) alist.get(2));
-             alist.set(2, old_left);
-        }
-        alist.remove(0);    
+//        if( i < A.length-2 &&(int) alist.get(1)< (int) alist.get(2)){
+//            //exchange
+//             int old_left = (int) alist.get(1);
+//             alist.set(1, (int) alist.get(2));
+//             alist.set(2, old_left);
+//        }
+
+
         System.out.println(alist);
         }
         
